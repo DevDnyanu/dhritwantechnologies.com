@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Modal Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Button to trigger the modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
+        Open Search Modal
+    </button>
+
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" id="searchInput" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4" onclick="performSearch()"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Results -->
+    <div id="searchResults" style="margin-top: 20px; display: none;">
+        <h3>Search Results:</h3>
+        <ul id="resultsList"></ul>
+    </div>
+
+    <script>
+        // Your search data
+        const searchData = [
+            { id: 1, title: 'Home', description: 'Welcome to our homepage.' },
+            { id: 2, title: 'Services', description: 'Discover our wide range of services.' },
+            { id: 3, title: 'About', description: 'Learn more about our company and values.' },
+            { id: 4, title: 'Contact', description: 'Get in touch with us for more information.' }
+        ];
+
+        function performSearch() {
+            const keyword = document.getElementById('searchInput').value.toLowerCase();
+            const resultsList = document.getElementById('resultsList');
+            resultsList.innerHTML = '';
+
+            if (keyword.trim() === "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Please enter a search keyword.'
+                });
+                return;
+            }
+
+            const filteredResults = searchData.filter(item => 
+                item.title.toLowerCase().includes(keyword) || 
+                item.description.toLowerCase().includes(keyword)
+            );
+
+            if (filteredResults.length === 0) {
+                resultsList.innerHTML = '<li>No results found.</li>';
+            } else {
+                filteredResults.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<strong>${item.title}</strong>: ${item.description}`;
+                    resultsList.appendChild(listItem);
+                });
+            }
+
+            document.getElementById('searchResults').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

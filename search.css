@@ -1,0 +1,67 @@
+/* General styles for the page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+/* Style for the modal content */
+.modal-content {
+    background: rgba(9, 30, 62, 0.9);
+    color: #ffffff;
+}
+
+.modal-header {
+    border-bottom: 1px solid #ffffff;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.input-group .form-control {
+    border: 2px solid #007bff;
+    color: #ffffff;
+}
+
+.input-group .form-control::placeholder {
+    color: #ffffff;
+}
+
+.input-group .btn {
+    background-color: #007bff;
+    border: none;
+}
+
+/* Style for the search results */
+#searchResults {
+    margin-top: 20px;
+    display: none;
+}
+
+#searchResults h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+#resultsList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#resultsList li {
+    background: #007bff;
+    color: #ffffff;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#resultsList li strong {
+    font-size: 1.2rem;
+}
